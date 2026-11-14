@@ -1,0 +1,15 @@
+{
+  "name": "hotel-booking-ais",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Курсовий проєкт — АІС бронювання номерів готелю з онлайн-оплатою",
+  "author": "Кравченко Ярослав Валентинович",
+  "engines": { "node": ">=24.0.0" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test --test-concurrency=1 test/*.test.js",
+    "mail": "node scripts/send-mail.js",
+    "backup": "node scripts/backup.js"
+  }
+}

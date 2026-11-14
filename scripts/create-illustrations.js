@@ -1,0 +1,40 @@
+// Локальні SVG-ілюстрації демонстраційних номерів. Фото можна додати в адмінпанелі.
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { ROOT } from '../src/config.js';
+import path from 'node:path';
+const folder = path.join(ROOT, 'public', 'images');
+mkdirSync(folder, { recursive:true });
+const scenes = {
+  standard:['#e3dccb','#b8b394','#777d5a','#a5b3a1'],
+  garden:['#e0decc','#b1bc9d','#628069','#adc5ad'],
+  deluxe:['#d9cebc','#a69076','#536e61','#bccab9'],
+  family:['#e3d9cb','#ba9c7a','#ac7958','#b3c3b1'],
+  suite:['#ded8c6','#a2aa8a','#5c6d4f','#c3d0bb'],
+};
+for (const [name,[wall,head,fabric,sky]] of Object.entries(scenes)) {
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="680" viewBox="0 0 1000 680" role="img" aria-label="Ілюстрація готельного номера">
+  <defs><linearGradient id="wall" x2="0" y2="1"><stop stop-color="${wall}"/><stop offset="1" stop-color="#d6cfb8"/></linearGradient><linearGradient id="light" x2="0" y2="1"><stop stop-color="#eef0d8"/><stop offset="1" stop-color="${sky}"/></linearGradient><linearGradient id="floor" x2="0" y2="1"><stop stop-color="#b49b75"/><stop offset="1" stop-color="#d6c1a1"/></linearGradient><linearGradient id="linen" x2="0" y2="1"><stop stop-color="#fffdf4"/><stop offset="1" stop-color="#e7e0cd"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#4c4c32" flood-opacity=".17"/></filter><pattern id="wood" width="42" height="400" patternUnits="userSpaceOnUse"><rect width="42" height="400" fill="${head}"/><path d="M2 0v400M6 0v400M39 0v400" stroke="#fff" stroke-opacity=".12"/></pattern></defs>
+  <rect width="1000" height="680" fill="url(#wall)"/><path d="M0 475H1000V680H0Z" fill="url(#floor)"/>
+  <path d="M0 570h1000M0 625h1000M100 475L0 680M270 475l-70 205M440 475l-20 205M610 475l40 205M780 475l100 205M950 475l160 205" stroke="#9d896a" stroke-opacity=".22"/>
+  <rect x="638" y="54" width="315" height="407" fill="#6a715a"/><rect x="648" y="64" width="295" height="385" fill="url(#light)"/>
+  <path d="M648 263q70-76 150-18t145-42v246H648Z" fill="#a6b696"/><path d="M648 320q70-55 148-5t147-16v150H648Z" fill="#879e7c"/><path d="M648 388q90-53 165-18t130 12v67H648Z" fill="#6e8b69"/>
+  <path d="M797 64v385M648 256h295" stroke="#f1eddf" stroke-width="8"/>
+  <path d="M625 49h37v420h-58q35-206 21-420Z" fill="#efeadb"/><path d="M937 49h40v420h-55q35-203 15-420Z" fill="#efeadb"/><path d="M631 63l-9 383M952 62l-7 379" stroke="#d2ceb8" stroke-width="5"/>
+  <ellipse cx="409" cy="580" rx="329" ry="70" fill="#e3d8bd" opacity=".8"/>
+  <rect x="85" y="200" width="480" height="260" rx="12" fill="url(#wood)"/>
+  <rect x="133" y="260" width="385" height="90" rx="15" fill="${fabric}" opacity=".27"/>
+  <g filter="url(#shadow)"><path d="M111 382h415l69 148-10 57H85l-7-57Z" fill="#7b6b51"/><path d="M115 370h408l72 149H77Z" fill="url(#linen)"/><path d="M77 519h518v48q-241 18-518 0Z" fill="#e8e2d1"/><path d="M132 367h170l-9 80H112Z" fill="#fbf9ed"/><path d="M320 367h171l29 80H318Z" fill="#f8f6e9"/><path d="M106 468h459l30 51v48H77v-48Z" fill="${fabric}"/><path d="M85 526q145 17 253-1t248 3M90 536q145 17 250-1t246 3" stroke="#fff" stroke-opacity=".12" fill="none"/></g>
+  <rect x="37" y="408" width="62" height="81" rx="4" fill="#876c4e"/><rect x="25" y="405" width="85" height="10" rx="3" fill="#bdab89"/>
+  <path d="M65 403V307" stroke="#777057" stroke-width="5"/><ellipse cx="65" cy="403" rx="20" ry="4" fill="#777057"/><path d="M46 273h37l18 45H28Z" fill="#f8f2d9"/>
+  <rect x="575" y="412" width="57" height="75" fill="#8d7454"/><rect x="567" y="405" width="75" height="12" rx="3" fill="#bda98a"/>
+  <rect x="197" y="73" width="180" height="109" fill="#a59470"/><rect x="204" y="80" width="166" height="95" fill="#eee9d7"/><circle cx="286" cy="124" r="34" fill="${head}"/><path d="M238 157q30-56 85-8" fill="none" stroke="${fabric}" stroke-width="15"/>
+  <g filter="url(#shadow)"><path d="M762 473q-12-54 40-58h66q49 4 44 58l-13 80H778Z" fill="${fabric}"/><rect x="772" y="491" width="129" height="49" rx="16" fill="${head}"/><path d="M785 538l-8 40M888 538l10 40" stroke="#685841" stroke-width="8"/></g>
+  <ellipse cx="716" cy="533" rx="51" ry="14" fill="#8d7656"/><path d="M716 535v62M693 600h47" stroke="#5e5948" stroke-width="6"/><ellipse cx="717" cy="529" rx="49" ry="12" fill="#b4a181"/>
+  <ellipse cx="710" cy="521" rx="14" ry="5" fill="#eae4cf"/><path d="M699 501h24v18q-10 7-24 0Z" fill="#f2eee0"/>
+  <path d="M958 546l18-9 10 81h-56l10-81Z" fill="#9d9479"/><path d="M956 548V378" stroke="#66764d" stroke-width="5"/>
+  <path d="M954 460q-54-25-36-65 40 2 36 65M960 429q53-25 26-66-30 7-26 66M955 491q-53-8-44-45 38-9 44 45M960 485q36-33 27-53-32 5-27 53" fill="#5c795a"/>
+  </svg>`;
+  writeFileSync(path.join(folder,`${name}.svg`),svg);
+}
+writeFileSync(path.join(folder,'mark.svg'),'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="15" fill="#254e3e"/><path d="M14 21h36v7H36v24h-8V28H14Z" fill="#f7f6f1"/></svg>');
+console.log('Ілюстрації створено.');
